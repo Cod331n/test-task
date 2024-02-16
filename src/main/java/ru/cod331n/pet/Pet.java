@@ -2,7 +2,6 @@ package ru.cod331n.pet;
 
 import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import ru.cod331n.pet.phrases.PetPhrases;
 import ru.cod331n.pet.phrases.PhrasesType;
@@ -23,10 +22,10 @@ public abstract class Pet {
     @NonNull
     private PetType type;
     public void sayPhrase() {
-        System.out.println(name + ": " + PetPhrases.getRandomPhrase(PhrasesType.ROUTINE));
+        System.out.println(name + ": " + PetPhrases.getRandomPhrase(PhrasesType.ROUTINES));
     }
 
     public void sayGreeting() {
-        System.out.println(PetPhrases.getRandomPhrase(PhrasesType.GREETING));
+        System.out.println(PetPhrases.getRandomPhrase(PhrasesType.GREETINGS));
     }
 }

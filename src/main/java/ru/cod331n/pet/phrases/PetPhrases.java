@@ -16,17 +16,20 @@ import java.util.Random;
 
 @UtilityClass
 public class PetPhrases {
+
+    private final Gson gson = new Gson();
+
     public String getRandomPhrase(PhrasesType type) {
-        String name = type.name().toLowerCase(Locale.ROOT) + "Phrases.json";
+        String name = type.name().toLowerCase(Locale.ROOT);
         URL filepath = Main.class.getClassLoader().getResource(name);
 
         if (filepath == null) {
-            return getRandomPhrase(new ArrayList<>());
+            return null;
         }
 
         try (FileReader reader = new FileReader(filepath.getPath())) {
-            Gson gson = new Gson();
-            Type listType = new TypeToken<ArrayList<String>>() {}.getType();
+            Type listType = new TypeToken<ArrayList<String>>() {
+            }.getType();
             List<String> phrases = gson.fromJson(reader, listType);
 
             return getRandomPhrase(phrases);
@@ -38,7 +41,7 @@ public class PetPhrases {
 
     private String getRandomPhrase(List<String> phrases) {
         if (phrases == null || phrases.isEmpty()) {
-            return "No phrases set.";
+            throw new IllegalArgumentException("phrases is null or empty");
         }
 
         Random random = new Random();

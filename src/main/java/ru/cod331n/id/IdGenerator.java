@@ -1,4 +1,4 @@
-package ru.cod331n;
+package ru.cod331n.id;
 
 import java.util.UUID;
 
